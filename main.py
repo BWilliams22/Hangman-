@@ -18,9 +18,11 @@ print("This is the amount of letters in my word:")
 letters = len(secret_word) 
 print(letters)
 
-while set(correct_guessed) != set(secret_word):
+lives = 6
+gameover = False 
+while not gameover and set(correct_guessed) != set(secret_word): 
   if correct_guessed:
-    print("Guessed letters that are correct: "+" , ".join(sorted(correct_guessed))) 
+    print("Guessed letters that are correct: "+" , ".join(sorted(correct_guessed)))  
   guess = input("Guess a letter: ") 
   if guess in secret_word:
     correct_guessed += guess
@@ -28,6 +30,13 @@ while set(correct_guessed) != set(secret_word):
   else: 
     incorrect_guessed += guess
     print("Sorry, that's not in the word!")
-    print("Guessed letters that are incorrect: "+" , ".join(sorted(incorrect_guessed)))
+    print("Guessed letters that are incorrect: "+" , ".join(sorted(incorrect_guessed))) 
+    lives -= 1 
+    if lives > 0: 
+     gameover = False  
+    else:  
+     gameover = True 
+     print ("Gameover! Sorry, you ran out of guesses!!! :(") 
 
-print("YAY! You guessed the word!") 
+if lives > 0: 
+ print("YAY! You guessed the word, without running out of guesses!!!") 
