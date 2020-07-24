@@ -9,9 +9,10 @@ with open("words.txt", "r") as f:
     words.append(line.strip()) 
 
 secret_word = random.choice(words)
+print(secret_word)
 
 correct_guessed = ""
-all_guessed = ""
+incorrect_guessed = ""
 
 print("This is the amount of letters in my word:") 
 letters = len(secret_word) 
@@ -21,11 +22,12 @@ while set(correct_guessed) != set(secret_word):
   if correct_guessed:
     print("Guessed letters that are correct: "+" , ".join(sorted(correct_guessed))) 
   guess = input("Guess a letter: ") 
-  all_guessed += guess 
   if guess in secret_word:
     correct_guessed += guess
     print("Correct!")
   else: 
+    incorrect_guessed += guess
     print("Sorry, that's not in the word!")
+    print("Guessed letters that are incorrect: "+" , ".join(sorted(incorrect_guessed)))
 
 print("YAY! You guessed the word!")
